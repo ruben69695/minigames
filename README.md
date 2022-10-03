@@ -60,7 +60,7 @@ npm run dev
 - Docker
 - Git
 
-# Game code
+# Game
 Game based from https://www.w3schools.com/graphics/game_intro.asp
 
 # Contribute
