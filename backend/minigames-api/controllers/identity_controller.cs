@@ -7,17 +7,13 @@ using System.Net;
 
 namespace Minigames.Api.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class IdentityController : ControllerBase
+public class IdentityController : ApiControllerBase 
 {
     private readonly ILogger<IdentityController> _logger;
-    private readonly IMediator _mediator;
 
-    public IdentityController(ILogger<IdentityController> logger, IMediator mediator)
+    public IdentityController(ILogger<IdentityController> logger, IMediator mediator) : base(mediator)
     {
         _logger = logger;
-        _mediator = mediator;
     }
 
     [Authorize]
@@ -27,7 +23,7 @@ public class IdentityController : ControllerBase
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
     public async Task<ActionResult> GetUser()
     {
-        return Ok(await _mediator.Send(new GetUserRequest()));
+        return Ok(await Mediator.Send(new GetUserRequest()));
     }
 
     [HttpPost("login")]
@@ -36,7 +32,7 @@ public class IdentityController : ControllerBase
     [ProducesResponseType((int)HttpStatusCode.Forbidden)]
     public async Task<ActionResult> Login(LoginRequest request)
     {
-        return Ok(await _mediator.Send(request));
+        return Ok(await Mediator.Send(request));
     }
 
     [HttpPost("signup")]
@@ -45,6 +41,6 @@ public class IdentityController : ControllerBase
     [ProducesResponseType((int)HttpStatusCode.Conflict)]
     public async Task<ActionResult> SignUp(SignUpRequest request)
     {
-        return Ok(await _mediator.Send(request));
+        return Ok(await Mediator.Send(request));
     }
 }

@@ -9,18 +9,15 @@ using Minigames.Application;
 
 namespace Minigames.Api.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class GameDataController : ControllerBase
+[Authorize]
+public class GameDataController : ApiControllerBase
 {
     private readonly ILogger<GameDataController> _logger;
-    private readonly IMediator _mediator;
     private IHttpContextAccessor _contextAccessor;
 
-    public GameDataController(ILogger<GameDataController> logger, IMediator mediator, IHttpContextAccessor contextAccessor)
+    public GameDataController(ILogger<GameDataController> logger, IMediator mediator, IHttpContextAccessor contextAccessor) : base(mediator)
     {
         _logger = logger;
-        _mediator = mediator;
         _contextAccessor = contextAccessor;
     }
 
@@ -40,7 +37,7 @@ public class GameDataController : ControllerBase
 
         var id = user.Claims.First(c => c.Type == ClaimTypes.Sid).Value;
 
-        return Ok(await _mediator.Send(new GetUserGameDataRequest(id)));
+        return Ok(await Mediator.Send(new GetUserGameDataRequest(id)));
     }
 
     [Authorize]
@@ -60,6 +57,6 @@ public class GameDataController : ControllerBase
         var id = user.Claims.First(c => c.Type == ClaimTypes.Sid).Value;
         request.SetUserId(id);
 
-        return Ok(await _mediator.Send(request));
+        return Ok(await Mediator.Send(request));
     }
 }

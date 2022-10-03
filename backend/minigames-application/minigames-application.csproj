@@ -10,13 +10,10 @@
   <ItemGroup>
     <PackageReference Include="MediatR" Version="11.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\minigames-core\minigames-core.csproj" />
-    <ProjectReference Include="..\minigames-infrastructure\minigames-infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

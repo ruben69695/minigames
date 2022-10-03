@@ -1,8 +1,5 @@
-using System.Text;
 using System.Text.Json;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.IdentityModel.Tokens;
 using Minigames.Application;
 using Minigames.Infrastructure;
 
@@ -11,43 +8,28 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services
+    .AddEndpointsApiExplorer()
+    .AddSwaggerGen();
+
+// Inject infrastructure services
 builder.Services
     .AddHttpContextAccessor()
     .AddAuthorization()
-    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-        };
-    });
-
-// Configure logging
-builder.Services.AddLogging(loggingBuilder => loggingBuilder.AddSeq(builder.Configuration.GetSection("Seq")));
-
-// Inject infrastructure services
-builder.Services.AddInfrastructure(builder.Configuration);
+    .AddInfrastructureServices(builder.Configuration);
 
 // Inject application services
-builder.Services.AddApplication();
+builder.Services.AddApplicationServices();
 
 // Cors
 const string CORS_POLICY = "localhost_rule";
-builder.Services.AddCors(options => 
+builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: CORS_POLICY,
-    policy => 
-    { 
-        policy.WithOrigins("https://localhost:3000/", "https://localhost:3000","https://127.0.0.1:3000/", "https://127.0.0.1:3000").AllowAnyHeader().AllowAnyMethod();
+    policy =>
+    {
+        policy.WithOrigins("https://localhost:3000/", "https://localhost:3000", "https://127.0.0.1:3000/", "https://127.0.0.1:3000").AllowAnyHeader().AllowAnyMethod();
     });
 });
 
@@ -61,7 +43,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // Migrate infrastructure
-await Minigames.Infrastructure.Extensions.Migrate(app.Services);
+await MinigamesContext.Migrate(app.Services);
 
 // Exception handler
 app.UseExceptionHandler(a => a.Run(async context =>
