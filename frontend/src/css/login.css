@@ -1,0 +1,16 @@
+#main {
+    margin-top: 5vh;
+}
+
+#login_form {
+    width: 50%;
+}
+
+.login_form {
+    border: 2px #f1f1f1 solid;
+    border-radius: 2px;
+}
+
+#btn_login_loading {
+    display: none;
+}

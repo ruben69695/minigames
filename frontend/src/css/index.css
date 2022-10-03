@@ -1,0 +1,36 @@
+#main {
+    margin-top: 5vh;
+}
+
+#start_game {
+    width: 24vh;
+}
+
+#restart_game {
+    display: none;
+    width: 24vh;
+    margin-bottom: 1rem;
+}
+
+#game_panel {
+    margin-top: 3vh;
+}
+
+#game_separator {
+    border: solid 1px;
+    margin-left: 5vh;
+    margin-right: 5vh;
+    display: none;
+}
+
+#accelerate {
+    display: none;
+}
+
+#game_data {
+    padding: 10vh;
+}
+
+#game_root {
+    padding: 10vh;
+}

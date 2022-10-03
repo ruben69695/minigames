@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- build:css css/bootstrap.min.css -->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- endbuild -->
+
+    <!-- build:css css/styles.min.css -->
+    <link rel="stylesheet" href="css/index.css">
+    <!-- endbuild -->
+
+    <title>Mini Game - Life itself</title>
+</head>
+
+<body>
+    <header>
+    </header>
+
+    <div id="main" class="container d-flex justify-content-center" style="flex-direction: column;">
+        <div class="d-flex justify-content-center">
+            <h2>Mini Game - Life Itself</h2>
+        </div>
+        <div id="game_panel" class="container d-flex justify-content-center">
+            <div style="display: flex; flex-direction: row;">
+                <div id="game_data">
+                    <p id="label_username"></p>
+                    <p id="label_record"></p>
+                    <p id="label_total_points"></p>
+                    <button id="start_game" class="btn btn-primary">Start Game</button>
+                    <button id="restart_game" class="btn btn-danger">Restart Game</button>
+                    <button id="accelerate" class="btn btn-primary">Jump!</button>
+                </div>
+                <hr id="game_separator" style="border: solid 1px black;"/>
+                <div id="game_root"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- build:js js/index.min.js -->
+    <script src="./js/index.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js js/bootstrap.min.js -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- endbuild -->
+</body>
+
+</html>

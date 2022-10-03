@@ -1,0 +1,41 @@
+version: "3.9"
+   
+services:
+  postgres:
+    image: postgres:14.3-bullseye
+    volumes:
+      - mydb:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+        - "5432:5432"
+  seq:
+    image: datalust/seq
+    ports:
+      - 5341:80
+    environment:
+      ACCEPT_EULA: "Y"
+  minigames-api:
+    build:
+      context: .
+      args:
+        DEPLOYMENT_ENVIRONMENT: Development
+    ports:
+      - "5000:80"
+      - "5001:443"
+    environment:
+      - ASPNETCORE_URLS=https://+;http://+
+      - ASPNETCORE_HTTPS_PORT=5001
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=ruben123
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/snakeapp.pfx
+    volumes:
+      - .:/src
+      - ${HOME}/.aspnet/https:/https/
+    depends_on:
+      - postgres
+      - seq
+
+volumes:
+    mydb:

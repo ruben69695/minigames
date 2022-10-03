@@ -1,1 +1,1 @@
-# snake-game
+# Mini Games 

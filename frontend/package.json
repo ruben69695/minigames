@@ -1,0 +1,23 @@
+{
+  "name": "mini-game",
+  "version": "1.0.0",
+  "description": "A test game for training gym",
+  "main": "src/index.html",
+  "scripts": {
+    "dev": "serve src/ --ssl-cert cert/localhost.pem --ssl-key cert/localhost-key.pem",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruben69695/snake-game.git"
+  },
+  "author": "Rubén Arrebola",
+  "license": "GPL-2.0-only",
+  "bugs": {
+    "url": "https://github.com/ruben69695/snake-game/issues"
+  },
+  "homepage": "https://github.com/ruben69695/snake-game#readme",
+  "devDependencies": {
+    "serve": "^14.0.1"
+  }
+}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- build:css css/bootstrap.min.css -->
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+  <!-- endbuild -->
+
+  <!-- build:css css/styles.min.css -->
+  <link rel="stylesheet" href="css/login.css">
+  <!-- endbuild -->
+
+  <title>Mini Game - Login</title>
+</head>
+
+<body>
+  <header>
+  </header>
+
+  <div id="main" class="container d-flex justify-content-center" style="flex-direction: column;">
+    <div class="container d-flex justify-content-center">
+      <form id="login_form">
+        <h2>Mini Games Login</h2>
+        <div class="login_form p-3">
+          <div class="form-group mb-2">
+            <label for="email">Email Address</label>
+            <input id="email" type="text" class="form-control" name="email" />
+          </div>
+          <div class="form-group mb-2">
+            <label for="password">Password</label>
+            <input id="password" type="password" class="form-control" name="password" />
+          </div>
+          <div>
+            <label>Not registered? <a href="signup.html">SignUp</a></label>
+          </div>
+          <button id="btn_login" type="submit" class="btn btn-primary mt-2">Login</button>
+          <button id="btn_login_loading" class="btn btn-primary mt-2" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span class="sr-only">Loading...</span>
+          </button>
+        </div>
+        <div id="alert_message" class="alert" role="alert"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- build:js js/index.min.js -->
+  <script src="./js/login.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js js/bootstrap.min.js -->
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!-- endbuild -->
+</body>
+
+</html>
