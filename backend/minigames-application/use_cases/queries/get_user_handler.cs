@@ -9,6 +9,7 @@ namespace Minigames.Application.UseCases.Queries;
 
 public record GetUserRequest() : IRequest<UserDto>;
 
+[Obsolete]
 public class GetUserHandler : IRequestHandler<GetUserRequest, UserDto>
 {
     private readonly ILogger<GetUserHandler> _logger;
